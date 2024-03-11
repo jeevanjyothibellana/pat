@@ -1,0 +1,23 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def removeNodes(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        stack = []
+        temp = head
+        dummy=headNew=ListNode(None,head)
+        while(temp):
+            while stack and stack[-1].val < temp.val:
+                stack.pop()
+            stack.append(temp)
+            temp=temp.next
+        for node in stack:
+            headNew.next=node
+            headNew=headNew.next
+        return dummy.next
